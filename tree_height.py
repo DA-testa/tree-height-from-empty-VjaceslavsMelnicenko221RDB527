@@ -9,19 +9,19 @@ def compute_height(n, parents):
     
     u = n*[-1]
     
-    def height(node):
+    def h(node):
         if u[node] != -1:
             return u[node]
         if parents[node] == -1:
              u[node] = 1
         else:
-             u[node] = height(parents[node])+1
+             u[node] = h(parents[node])+1
         return  u[node]
    
     max_height = 0
     
     for root in range(n):
-        max_height = max(max_height,height(root))
+        max_height = max(max_height,h(root))
         
     return max_height
 
@@ -32,7 +32,7 @@ def main():
     if "I" in tx:
        n = int(input())
        parents = list(map(int, input().split()))
-    elif "F" in text:
+    elif "F" in tx:
         c = input()
         ts ='./test/'
         fl = ts+c
