@@ -1,4 +1,4 @@
-#221RDB527 Vjačeslavs Meļņičenko 15.grupa
+#221RDB527 Vjačeslavs Meļņičenkoo 15.grupa
 # python3
 
 import sys
@@ -6,20 +6,18 @@ import threading
 import numpy
 
 def compute_height(n, parents):
-    
-    u = n*[-1]
+    q = n*[-1]
     
     def h(node):
-        if u[node] != -1:
-            return u[node]
+        if q[node] != -1:
+            return q[node]
         if parents[node] == -1:
-             u[node] = 1
+             q[node] = 1
         else:
-             u[node] = h(parents[node])+1
-        return  u[node]
+             q[node] = h(parents[node])+1
+        return  q[node]
    
     max_height = 0
-    
     for root in range(n):
         max_height = max(max_height,h(root))
         
@@ -28,29 +26,30 @@ def compute_height(n, parents):
 
 def main():
     
-    tx = input("I or F: ")
-    if "I" in tx:
+    t = input("I or F: ")
+    if "I" in t:
        n = int(input())
        parents = list(map(int, input().split()))
-    elif "F" in tx:
-        c = input()
-        ts ='./test/'
-        fl = ts+c
+    elif "F" in t:
+        w = input()
+        e ='./test/'
+        r = e+w
         
-        if "a" not in c
+        if "a" not in w:
             try:
-                with open(fl) as x:
+                with open(r) as x:
                     n=int(x.readline())
                     parents=list(map(int,x.readline().split()))
             except Exception as y:
                 print("Error",str(y))
                 return
-           
+            
         else:
             print("Error")
             return    
     print(compute_height(n,parents))    
     
+
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
